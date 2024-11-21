@@ -20,7 +20,7 @@ const BenefitRegister = () => {
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        {/* <TableBody>
           {benefits.map((benefit) => (
             <TableRow key={benefit.id}>
               <TableCell>{benefit.name}</TableCell>
@@ -35,6 +35,22 @@ const BenefitRegister = () => {
               </TableCell>
             </TableRow>
           ))}
+        </TableBody> */}
+        <TableBody>
+          
+            <TableRow >
+              <TableCell>Sale Percent</TableCell>
+              <TableCell>The sale percent of the company increased to 12% this year</TableCell>
+              <TableCell>
+                <Button variant="contained" color="primary">
+                  Edit
+                </Button>
+                <Button variant="contained" color="secondary" style={{ marginLeft: '10px' }}>
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          
         </TableBody>
       </Table>
     </div>
