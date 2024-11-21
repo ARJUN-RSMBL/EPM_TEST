@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, Tab, Box, Typography } from '@mui/material';
+import Dropdown from '../components/Dropdown';
+
+const categories = ['Financial', 'Technical', 'Operational'];
 
 const RiskIssueActionPage = () => {
-  const [tabIndex, setTabIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
@@ -11,7 +15,19 @@ const RiskIssueActionPage = () => {
   const renderContent = () => {
     switch (tabIndex) {
       case 0:
-        return <Typography>Risk Management Content</Typography>;
+        return (
+          <Box>
+            <Dropdown
+              label="Risk Category"
+              options={categories}
+              value={selectedCategory}
+              onChange={setSelectedCategory}
+            />
+            <Typography sx={{ marginTop: 2 }}>
+              Selected Risk Category: {selectedCategory || 'None'}
+            </Typography>
+          </Box>
+        );
       case 1:
         return <Typography>Issue Management Content</Typography>;
       case 2:

@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions } from '@mui/material';
 
-const DeliverablePopup = ({ open, onClose, onSave, deliverable = {} }) => {
-  const [title, setTitle] = React.useState(deliverable.title || '');
-  const [description, setDescription] = React.useState(deliverable.description || '');
+const DeliverablePopup = ({ open, onClose, onSave, deliverable }) => {
+  // Use default values when `deliverable` is null or undefined
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (deliverable) {
+      setTitle(deliverable.title || '');
+      setDescription(deliverable.description || '');
+    } else {
+      setTitle('');
+      setDescription('');
+    }
+  }, [deliverable]);
 
   const handleSave = () => {
     onSave({ title, description });
-    onClose();
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>{deliverable.id ? 'Edit Deliverable' : 'Add Deliverable'}</DialogTitle>
+      <DialogTitle>{deliverable ? 'Edit Deliverable' : 'Add Deliverable'}</DialogTitle>
       <DialogContent>
         <TextField
           label="Title"
